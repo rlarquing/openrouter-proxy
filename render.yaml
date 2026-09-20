@@ -5,7 +5,5 @@ services:
     plan: free
     buildCommand: npm install
     startCommand: node index.js
-    envVars:
-      # OpenRouter no bloquea las IPs de salida de Render (datacenters EE.UU.)
-      - key: UPSTREAM
-        value: https://openrouter.ai
+    # Sin variables de entorno: el default de UPSTREAM vive en index.js
+    # (https://openrouter.ai). Mismo patrón que anthropic-proxy.
