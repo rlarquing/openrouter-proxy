@@ -1,9 +1,12 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-// URL del worker de Cloudflare (se configura como variable de entorno en Render:
-// UPSTREAM=https://openrouter-proxy.<tu-subdominio>.workers.dev)
-const UPSTREAM = process.env.UPSTREAM || 'https://openrouter-proxy.TODO-CAMBIAR.workers.dev';
+// OpenRouter bloquea IPs de Cuba, pero Render sale por datacenters de EE.UU.,
+// así que el destino directo es openrouter.ai (sin pasar por el worker de
+// Cloudflare: menos saltos, menos fallos intermitentes y menor latencia).
+// El worker (openrouter-proxy.rlarquing.workers.dev) queda como alternativa
+// para clientes que SÍ puedan alcanzar workers.dev.
+const UPSTREAM = process.env.UPSTREAM || 'https://openrouter.ai';
 const PORT = process.env.PORT || 3000;
 const app = express();
 
