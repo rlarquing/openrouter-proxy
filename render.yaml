@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: openrouter-proxy
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: UPSTREAM
+        sync: false  # se completa en el dashboard: https://openrouter-proxy.<subdominio>.workers.dev
