@@ -6,5 +6,6 @@ services:
     buildCommand: npm install
     startCommand: node index.js
     envVars:
+      # OpenRouter no bloquea las IPs de salida de Render (datacenters EE.UU.)
       - key: UPSTREAM
-        sync: false  # se completa en el dashboard: https://openrouter-proxy.<subdominio>.workers.dev
+        value: https://openrouter.ai
